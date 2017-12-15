@@ -9,9 +9,9 @@ def twice_around(G, origin = 0):
     H = nx.minimum_spanning_tree(G)                     # Encontra a MST de G
     H = nx.MultiGraph(H)
 
-    Haux = H.copy()
+    Haux = H.copy()                                     # Fazendo uma cópia de H para utilizar no loop
     
-    for u,v in Haux.edges():                               # Duplica as arestas da MST
+    for u,v in Haux.edges():                            # Duplica as arestas da MST
         H.add_edge(u,v) 
 
     euleraux = list(nx.eulerian_circuit(H, origin))     # Encontra circuito Euleriano
@@ -56,6 +56,7 @@ for i in range(3):
     peso, inicial = pop(max_pesos)
     print("Iniciando em ", inicial, ":", -peso)
 
+#Desenha e exibe o grafo
 pos = nx.spring_layout(H, k = 0.35, iterations=100)
 nx.draw_networkx(H, pos)
 plt.show()
