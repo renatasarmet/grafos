@@ -1,13 +1,17 @@
 import numpy as np
 import networkx as nx
+import matplotlib.pyplot as plt
 from heapq import heappop, heappush
 pop = heappop
 push = heappush
 
 def twice_around(G, origin = 0):                
     H = nx.minimum_spanning_tree(G)                     # Encontra a MST de G
-    H = nx.MultiGraph(H)   
-    for u,v in H.edges():                               # Duplica as arestas da MST
+    H = nx.MultiGraph(H)
+
+    Haux = H.copy()
+    
+    for u,v in Haux.edges():                               # Duplica as arestas da MST
         H.add_edge(u,v) 
 
     euleraux = list(nx.eulerian_circuit(H, origin))     # Encontra circuito Euleriano
@@ -54,5 +58,5 @@ for i in range(3):
 
 pos = nx.spring_layout(H, k = 0.35, iterations=100)
 nx.draw_networkx(H, pos)
-
+plt.show()
 
