@@ -54,3 +54,5 @@ for i in range(3):
 
 pos = nx.spring_layout(H, k = 0.35, iterations=100)
 nx.draw_networkx(H, pos)
+
+
